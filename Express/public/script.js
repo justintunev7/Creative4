@@ -24,33 +24,43 @@ function MainCtrl($scope, userFetcher, $http) {
 
     $scope.userName = 'Justin and Mason';
 
-        userFetcher.get()
-            .then(function(data) {
-                var myUser;
-                $scope.users = data;
-                for (var i = 0; i < data.length; i++) {
-                    // look for the entry with a matching `username` value
-                    if (data[i].username == $scope.userName) {
-                        myUser = data[i];
-                        console.log("What is the found data? - " + JSON.stringify(myUser, null, 4));
-                        $scope.level = myUser.userLevel;
-                        $scope.userName = myUser.username;
-                        $scope.healthPoints = myUser.monsterHealth;
-                        $scope.tasks = myUser.tasks;
-                        $scope.ctr = myUser.monsterCounter;
-                        $scope.expPoints = myUser.experience;
-                    }
+    userFetcher.get()
+        .then(function(data) {
+            var myUser;
+            $scope.users = data;
+            for (var i = 0; i < data.length; i++) {
+                // look for the entry with a matching `username` value
+                if (data[i].username == $scope.userName) {
+                    myUser = data[i];
+                    console.log("What is the found data? - " + JSON.stringify(myUser, null, 4));
+                    $scope.level = myUser.userLevel;
+                    $scope.userName = myUser.username;
+                    $scope.healthPoints = myUser.monsterHealth;
+                    $scope.tasks = myUser.tasks;
+                    $scope.ctr = myUser.monsterCounter;
+                    $scope.expPoints = myUser.experience;
                 }
-                console.log("What is the data? - " + JSON.stringify(data, null, 4));
-            });
-            
-            
+            }
+            console.log("What is the data? - " + JSON.stringify(data, null, 4));
+        });
+
+    $scope.clearDone = function() {
+        //var tlist=$scope.tasks;
+        for (var i = 0; i < $scope.tasks.length; i++) {
+            var task = $scope.tasks[i];
+            if (task.complete) {
+                console.log("here:" + task.text);
+                $scope.tasks.splice(i, 1);
+            }
+            console.log($scope.tasks);
+        }
+        //$scope.saveGame();
+    }
     $scope.clearToDo = function() {
         var length = $scope.tasks.length;
-        for (var i = 0; i < length; i++)
-        {
+        for (var i = 0; i < length; i++) {
             $scope.tasks.pop();
-        }   
+        }
     };
 
     $scope.clearData = function() {
@@ -63,7 +73,7 @@ function MainCtrl($scope, userFetcher, $http) {
         $scope.ctr = 0;
         console.log('Tasks: ' + JSON.stringify($scope.tasks, null, 4));
     };
-    
+
     // Array of href's to monsters (gif) - last one is the celebration final image
     $scope.monsters = ["http://www.animatedimages.org/data/media/574/animated-monster-image-0032.gif",
         "http://www.animatedimages.org/data/media/574/animated-monster-image-0081.gif",
@@ -83,7 +93,7 @@ function MainCtrl($scope, userFetcher, $http) {
             text: $scope.taskText,
             complete: false
         });
-        
+
         $scope.taskText = "";
     };
     $scope.playAudio = function() {
@@ -152,7 +162,8 @@ function MainCtrl($scope, userFetcher, $http) {
 
     $scope.loadGame = function() {
         var myUser;
-        
+        $scope.userName = $scope.loadUserName;
+        $scope.loadUserName = "";
         userFetcher.get()
             .then(function(data) {
                 $scope.users = data;
@@ -176,6 +187,8 @@ function MainCtrl($scope, userFetcher, $http) {
     };
 
     $scope.saveGame = function() {
+        $scope.userName = $scope.saveUserName;
+        //$scope.saveUserName = "";
         var userData = {
             username: $scope.userName,
             monsterHealth: $scope.healthPoints,

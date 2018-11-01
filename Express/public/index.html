@@ -19,32 +19,43 @@
 
 
 <body ng-app="todoApp" ng-controller="MainCtrl">
+    <div class="container">
+        <form id="newUser" ng-submit="saveGame()">
+            User Name: <input type="text" ng-model="saveUserName" value=""><br>
+            <input type="submit" value="Save Game">
+        </form>
 
-    <form id="newUser" ng-submit="saveGame()">
-        User Name: <input type="text" ng-model="userName" value=""><br>
-        <input type="submit" value="Save Game">
-    </form>
-    
-    <form id="loadUser" ng-submit="loadGame()">
-        User Name: <input type="text" ng-model="userName" value="Justin and Mason"><br>
-        <input type="submit" value="Load Game">
-    </form>
-    
-    
-    
+    </div>
+    <div class="container">
+        <form id="loadUser" ng-submit="loadGame()">
+            User Name: <input type="text" ng-model="loadUserName" value="Justin and Mason"><br>
+            <input type="submit" value="Load Game">
+        </form>
+    </div>
+
+
+
+
+
     <div class="list card">
-        <div class="card-header" style="text-align:center"><h3>Todo List</h3><p>{{userName}}</p></div>
+        <div class="card-header" style="text-align:center">
+            <h3>Todo List</h3>
+            <p>{{userName}}</p>
+        </div>
         <form ng-submit="addTask(taskText)">
             <div class="form-group">
-                <p>Create tasks. Complete your tasks to deal damage to the monster. Earn experience by defeating monsters.
-                Enter your username to save or load your progress. Click Start Over to start your own path to accomplishing your goals.</p>
+                <p>Create tasks. Complete your tasks to deal damage to the monster. Earn experience by defeating monsters. Enter your username to save or load your progress. Click Start Over to start your own path to accomplishing your goals. To remove the completed tasks from your list, just press the "Clear Finished Items" button, just remember to save your game so you can come back to it later.</p>
                 <label for="task-text">Create a task:</label>
                 <input type="text" id="task-text" class="form-control" ng-model="taskText">
             </div>
             <button type="submit" class="btn btn-primary">Add to List</button>
         </form>
         <form ng-submit="clearData()"><button type="submit" class="btn btn-primary" style="background-color:red">Start over</button>
-</form>
+
+        </form>
+        <form id="cleardones" ng-submit="clearDone()">
+            <input class="btn btn-primary" style="background-color:purple;" type="submit" value="Clear finished Items">
+        </form>
 
 
         <div class="card-body">
