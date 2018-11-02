@@ -82,7 +82,7 @@
     <div class="monsters container">
 
         <div class="monster">
-            <img id="gif" src="{{monsters[ctr]}}" alt="Thorg" height="350" width="350">
+            <img id="gif" src="{{monsters[ctr]}}" alt="Thorg" height="400" width="400">
         </div>
         <h5 id="player" style="text-align:center" ng-if="!gameOver">Health Bar </h5>
         <div class="progress" ng-if="!gameOver">
@@ -91,13 +91,13 @@
         </div>
         <p id="healthPoints" ng-model="health" style="color:red; text-align:center" ng-if="!gameOver">{{healthPoints}}/1000</p>
 
-        <p id="expPoints" ng-model="level" style="color:black; font-weight: bold; text-align:left" ng-if="!gameOver">Level:{{level}}</p>
         <h5 id="player" style="text-align:center" ng-if="!gameOver">Experience</h5>
         <div class="progress" ng-if="!gameOver">
             <div id="progress-bar" ng-model="exp" class="progress-bar" role="progressbar" style="width: {{expPoints/10}}%; background-color:yellow;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
             <p id="exp" style="color:#bbbb00; margin-left:5px;"></p>
         </div>
         <p id="expPoints" style="color:#bbbb00; font-weight: bold; text-align:center;" ng-if="!gameOver">{{expPoints}}/1000</p>
+        <p id="expPoints" ng-model="level" style="color:black; font-weight: bold; text-align:left" ng-if="!gameOver">Level:{{level}}</p>
 
         <div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 
