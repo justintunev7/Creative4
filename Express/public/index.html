@@ -19,44 +19,42 @@
 
 
 <body ng-app="todoApp" ng-controller="MainCtrl">
-    <div class="container">
-        <form id="newUser" ng-submit="saveGame()">
-            User Name: <input type="text" ng-model="saveUserName" value=""><br>
-            <input type="submit" value="Save Game">
-        </form>
-
-    </div>
-    <div class="container">
-        <form id="loadUser" ng-submit="loadGame()">
-            User Name: <input type="text" ng-model="loadUserName" value="Justin and Mason"><br>
-            <input type="submit" value="Load Game">
-        </form>
-    </div>
-
-
-
-
 
     <div class="list card">
         <div class="card-header" style="text-align:center">
             <h3>Todo List</h3>
-            <p>{{userName}}</p>
+            <p><i>{{userName}}</i></p>
+        </div>
+        <div class="container">
+            <form id="newUser" ng-submit="saveGame()">
+                User Name: <input type="text" ng-model="saveUserName" value="">
+                <input type="submit" value="Save Game">
+            </form>
+
+            <form id="loadUser" ng-submit="loadGame()">
+                User Name: <input type="text" ng-model="loadUserName" value="">
+                <input type="submit" value="Load Game">
+            </form>
         </div>
         <form ng-submit="addTask(taskText)">
             <div class="form-group">
-                <p>Create tasks. Complete your tasks to deal damage to the monster. Earn experience by defeating monsters. Enter your username to save or load your progress. Click Start Over to start your own path to accomplishing your goals. To remove the completed tasks from your list, just press the "Clear Finished Items" button, just remember to save your game so you can come back to it later.</p>
+
+                <p>Create tasks. Complete your tasks to deal damage to the monster. Earn experience by defeating monsters. 
+                Enter your username to save or load your progress. Click "Start new game" to start your own path to accomplishing
+                your goals. To remove the completed tasks from your list, just press the "Clear Finished Items" button, 
+                just remember to save your game so you can come back to it later.</p>
+
                 <label for="task-text">Create a task:</label>
                 <input type="text" id="task-text" class="form-control" ng-model="taskText">
             </div>
-            <button type="submit" class="btn btn-primary">Add to List</button>
+            <button type="submit" class="btn btn-primary" style="width:100%">Add to List</button>
         </form>
-        <form ng-submit="clearData()"><button type="submit" class="btn btn-primary" style="background-color:red">Start over</button>
+        <form ng-submit="clearData()"><button type="submit" class="btn btn-primary" style="background-color:red; width:40%;">Start new game</button><i style="font-size:12px; margin-left:2px">warning: This button will remove all unsaved data</i>
 
         </form>
-        <form id="cleardones" ng-submit="clearDone()">
-            <input class="btn btn-primary" style="background-color:purple;" type="submit" value="Clear finished Items">
+                <form id="cleardones" ng-submit="clearDone()">
+            <input class="btn btn-primary" style="background-color:purple; width:40%;" type="submit" value="Clear finished Items">
         </form>
-
 
         <div class="card-body">
             <!-- Default if there are no tasks created -->
@@ -82,8 +80,9 @@
         </div>
     </div>
     <div class="monsters container">
+
         <div class="monster">
-            <img id="gif" src="{{monsters[ctr]}}" alt="Thorg" height="275" width="275">
+            <img id="gif" src="{{monsters[ctr]}}" alt="Thorg" height="350" width="350">
         </div>
         <h5 id="player" style="text-align:center" ng-if="!gameOver">Health Bar </h5>
         <div class="progress" ng-if="!gameOver">
@@ -98,9 +97,9 @@
             <div id="progress-bar" ng-model="exp" class="progress-bar" role="progressbar" style="width: {{expPoints/10}}%; background-color:yellow;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
             <p id="exp" style="color:#bbbb00; margin-left:5px;"></p>
         </div>
-        <p id="expPoints" style="color:#bbbb00; font-weight: bold; text-align:center" ng-if="!gameOver">{{expPoints}}/1000</p>
+        <p id="expPoints" style="color:#bbbb00; font-weight: bold; text-align:center;" ng-if="!gameOver">{{expPoints}}/1000</p>
 
-
+        <div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 
         <div class="repeatGame" ng-if="gameOver">
             <p id="message">Well done! You killed them all!</p>

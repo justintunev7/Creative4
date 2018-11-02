@@ -5,7 +5,7 @@ html {
 body {
     height: 100%;
     display: grid;
-    grid-template-columns: 1fr 20em 30em 1fr;
+    grid-template-columns: 1fr 30em 30em 1fr;
     grid-template-areas: " . list monsters . ";
     align-items: flex-start;
 }

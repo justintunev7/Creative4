@@ -50,7 +50,7 @@ function MainCtrl($scope, userFetcher, $http) {
             var task = $scope.tasks[i];
             if (task.complete) {
                 console.log("here:" + task.text);
-                $scope.tasks.splice(i, 1);
+                $scope.tasks.splice(i--, 1);
             }
             console.log($scope.tasks);
         }
